@@ -55,14 +55,14 @@ public class HelloController  {
 
     @FXML
     protected void onExecuteButtonAction() throws InterruptedException{                                // Полнейшая нефильтрованая дрисня, это худшее что я когда либо писал
-        RootThread threadA = new RootThread(Atext, labelA);                                            // Создаем потоки, привязываем в конструкторе к ним текстбокс
-        RootThread threadB = new RootThread(Btext, labelB);
-        RootThread threadC = new RootThread(Ctext, labelC);
-        RootThread threadD = new RootThread(Dtext, labelD);
-        RootThread threadE = new RootThread(Etext, labelE);
-        RootThread threadF = new RootThread(Ftext, labelF);
-        RootThread threadG = new RootThread(Gtext, labelG);
-        RootThread threadH = new RootThread(Htext, labelH);
+        RootThread threadA = new RootThread("A",Atext, labelA);                                            // Создаем потоки, привязываем в конструкторе к ним текстбокс
+        RootThread threadB = new RootThread("B",Btext, labelB);
+        RootThread threadC = new RootThread("C",Ctext, labelC);
+        RootThread threadD = new RootThread("D",Dtext, labelD);
+        RootThread threadE = new RootThread("E",Etext, labelE);
+        RootThread threadF = new RootThread("F",Ftext, labelF);
+        RootThread threadG = new RootThread("G",Gtext, labelG);
+        RootThread threadH = new RootThread("H",Htext, labelH);
         threadA.setCount(0).setCountTarget(5).setCreate(()->{threadD.run(); threadC.run(); threadE.run();});                            //Задаем отрезки для потоков и потоки которые они запустит перед тем как помереть
         threadB.setCount(0).setCountTarget(10).setCreate(()->{
             exceptionHandler(threadE);threadG.run(); threadF.run();});                 //В точках синхронизации потоки запускаются после joint()
