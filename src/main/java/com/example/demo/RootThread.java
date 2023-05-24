@@ -1,11 +1,11 @@
 package com.example.demo;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-public class RootThread extends Thread{
+public class RootThread extends Thread {
 
     int count;
     int countTarget;
@@ -25,30 +25,31 @@ public class RootThread extends Thread{
 
     @Override
     public void run() {
+        Platform.runLater(() -> label.setText("Работает"));
 
-        label.setText("Работает");
         countUp();
-        if(create != null){
+        if (create != null) {
             create.create();
         }
-        label.setText("Остановлен");
+        Platform.runLater(() -> label.setText("Остановлен"));
     }
 
-    public void countUp(){
-        textArea.setText("");
+    public void countUp() {
+        Platform.runLater(() -> textArea.setText(""));
         do {
             count++;
-            textArea.setText(textArea.getText() + "\n" + count);
-//            try{
-//                sleep(100);
-//            }catch (InterruptedException e){   // Паузы для наглядности которые каким то образом тормозят главный поток
-//                this.interrupt();              // В дальний ящик собственно
-//            }
+            Platform.runLater(() -> textArea.setText(textArea.getText() + "\n" + count));
+            try {
+                sleep(500);
+            } catch (
+                    InterruptedException e) {   // Паузы для наглядности которые каким то образом тормозят главный поток
+                this.interrupt();              // В дальний ящик собственно
+            }
 
-        }while (count < countTarget);
+        } while (count < countTarget);
     }
 
-    RootThread setCreate(ThreadCreate create){  // Внизу сеттери и геттеры (RootThread в возвращемом типе чтобы можно было комманды в цепь строить)
+    RootThread setCreate(ThreadCreate create) {  // Внизу сеттери и геттеры (RootThread в возвращемом типе чтобы можно было комманды в цепь строить)
         this.create = create;
         return this;
     }
@@ -57,13 +58,13 @@ public class RootThread extends Thread{
         return count;
     }
 
-    public int getCountTarget() {
-        return countTarget;
-    }
-
     public RootThread setCount(int count) {
         this.count = count;
         return this;
+    }
+
+    public int getCountTarget() {
+        return countTarget;
     }
 
     public RootThread setCountTarget(int countTarget) {
