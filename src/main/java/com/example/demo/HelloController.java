@@ -1,10 +1,16 @@
 package com.example.demo;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HelloController {
+    public Button pause;
+    public Button resume;
     @FXML
     //Да, давай ебать требовать добавление ссаных тегов к каждому ебаному элементу
     private Label labelA;
@@ -41,6 +47,9 @@ public class HelloController {
     @FXML
     private TextArea Htext;
 
+
+    private final List<RootThread>  threads = new ArrayList<>();
+
     private void exceptionHandler(RootThread... thread) {
 
         for (RootThread thr : thread) {
@@ -56,6 +65,9 @@ public class HelloController {
 
     @FXML
     protected void onExecuteButtonAction() {                                // Полнейшая нефильтрованая дрисня, это худшее что я когда либо писал
+        Atext.clear(); Btext.clear(); Ctext.clear();
+        Dtext.clear(); Etext.clear(); Ftext.clear();
+        Gtext.clear(); Htext.clear();
         RootThread threadA = new RootThread("A", Atext, labelA);                                            // Создаем потоки, привязываем в конструкторе к ним текстбокс
         RootThread threadB = new RootThread("B", Btext, labelB);
         RootThread threadC = new RootThread("C", Ctext, labelC);
@@ -83,9 +95,31 @@ public class HelloController {
         threadF.setCount(10).setCountTarget(20);
         threadG.setCount(10).setCountTarget(15);
         threadH.setCount(15).setCountTarget(20);
+        pause.setDisable(false);
+        threads.addAll(List.of(new RootThread[]{threadA, threadB, threadC, threadD, threadE, threadF, threadG, threadH}));
         threadA.start();
         threadB.start();
+
     }
+
+    @FXML
+    protected void onExecutePauseButtonAction() {
+        resume.setDisable(false);
+        for (RootThread thr:threads) {
+            thr.setPaused(true);
+        }
+        pause.setDisable(true);
+    }
+
+    @FXML
+    protected void onExecuteResumeButtonAction(){
+        pause.setDisable(false);
+        for (RootThread thr:threads) {
+            thr.setPaused(false);
+        }
+        resume.setDisable(true);
+    }
+
 
 
 }

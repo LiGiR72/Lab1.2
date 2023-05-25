@@ -7,8 +7,10 @@ import javafx.scene.control.TextArea;
 
 public class RootThread extends Thread {
 
-    int count;
-    int countTarget;
+    private int count;
+    private int countTarget;
+
+    private boolean isPaused = false;
 
     ThreadCreate create = null;  //Функциональный интерфейс чтобы можно было лямбдами настраивать а не ебошить 8 классов для каждого потока
     @FXML
@@ -37,6 +39,10 @@ public class RootThread extends Thread {
     public void countUp() {
         Platform.runLater(() -> textArea.setText(""));
         do {
+            if(isPaused){
+                Thread.yield();
+                continue;
+            }
             count++;
             Platform.runLater(() -> textArea.setText(textArea.getText() + "\n" + count));
             try {
@@ -70,5 +76,13 @@ public class RootThread extends Thread {
     public RootThread setCountTarget(int countTarget) {
         this.countTarget = countTarget;
         return this;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
     }
 }

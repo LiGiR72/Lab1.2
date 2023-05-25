@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="746.0" vgap="10.0" fx:controller="com.example.demo.HelloController" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="746.0" vgap="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -22,14 +22,14 @@
         <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" fx:id="Atext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="Btext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="Ctext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" fx:id="Dtext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" fx:id="Etext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" fx:id="Ftext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" fx:id="Gtext"/>
-        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" fx:id="Htext"/>
+        <TextArea fx:id="Atext" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+        <TextArea fx:id="Btext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextArea fx:id="Ctext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <TextArea fx:id="Dtext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <TextArea fx:id="Etext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+        <TextArea fx:id="Ftext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+        <TextArea fx:id="Gtext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+        <TextArea fx:id="Htext" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
         <Label text="A" />
         <Label text="B" GridPane.columnIndex="1" />
         <Label text="C" GridPane.columnIndex="2" />
@@ -38,15 +38,17 @@
         <Label text="F" GridPane.columnIndex="5" />
         <Label text="G" GridPane.columnIndex="6" />
         <Label text="H" GridPane.columnIndex="7" />
-        <Label text="Сон" fx:id="labelA" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelC" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelD" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelF" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelG" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-        <Label text="Сон" fx:id="labelH" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Запустить" GridPane.columnIndex="7" GridPane.rowIndex="3" onAction="#onExecuteButtonAction"/>
+        <Label fx:id="labelA" text="Сон" GridPane.rowIndex="1" />
+        <Label fx:id="labelB" text="Сон" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="labelC" text="Сон" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label fx:id="labelD" text="Сон" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label fx:id="labelE" text="Сон" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <Label fx:id="labelF" text="Сон" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+        <Label fx:id="labelG" text="Сон" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+        <Label fx:id="labelH" text="Сон" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#onExecuteButtonAction" text="Запустить" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+      <Button fx:id="pause" disable="true" onAction="#onExecutePauseButtonAction" mnemonicParsing="false" text="Пауза" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+      <Button fx:id="resume"  disable="true" onAction="#onExecuteResumeButtonAction" mnemonicParsing="false" text="Продолжить" GridPane.columnIndex="5" GridPane.rowIndex="3" />
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
